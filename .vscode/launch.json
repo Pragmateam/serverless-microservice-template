@@ -1,0 +1,51 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "inputs": [
+    {
+      "id": "promptFunctionName",
+      "description": "Please enter a function name to test",
+      "default": "myFunction",
+      "type": "promptString"
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Debug Serverless Offline",
+      "type": "node",
+      "request": "attach",
+      "smartStep": true,
+      "sourceMaps": true,
+      "protocol": "inspector",
+      "address": "0.0.0.0",
+      "port": 9229,
+      "restart": true,
+      "trace": "verboser",
+      "outFiles": ["${workspaceFolder}/.webpack/**/*"],
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Launch Invoke Local Function",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/serverless/bin/serverless",
+      "args": ["invoke", "local", "-f", "${input:promptFunctionName}", "--data", "{}"],
+      "sourceMaps": true,
+      "smartStep": true,
+      "runtimeArgs": ["--lazy"],
+      "outFiles": ["${workspaceFolder}/.webpack/**/*"],
+      "protocol": "inspector",
+      "runtimeExecutable": "node",
+      "env": {
+        // Here we set some environment vars that should be set locally.
+        // They can and will overwrite the ones coming from your serverless.yml
+      },
+      "windows": {
+        "program": "${workspaceFolder}\\node_modules\\serverless\\bin\\serverless"
+      },
+      "autoAttachChildProcesses": true
+    }
+  ]
+}

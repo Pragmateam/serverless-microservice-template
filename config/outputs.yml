@@ -1,0 +1,31 @@
+# Exports for custom ApiGateway resources, so they can be reused across the services
+ApiGatewayRestApiId:
+  Description: "Shared ApiGateway Id"
+  Value:
+    Ref: SharedApiGateway
+  Export:
+    # This name will be used to import a resource
+    Name: ${self:custom.prefix}-restApiId
+
+ApiGatewayRestApiRootResourceId:
+  Description: "Shared ApiGateway root resource Id"
+  Value:
+    Fn::GetAtt:
+      - SharedApiGateway
+      - RootResourceId
+  Export:
+    Name: ${self:custom.prefix}-rootResourceId
+#
+# ApiGatewayRestApiResourceUsersId:
+#   Description: "Shared ApiGateway users resource Id"
+#   Value:
+#     Ref: SharedApiGatewayResourceUsers
+#   Export:
+#     Name: ${self:custom.prefix}-usersResourceId
+#
+# ApiGatewayRestApiResourceUserIdId:
+#   Description: "Shared ApiGateway {userId} resource Id"
+#   Value:
+#     Ref: SharedApiGatewayResourceUserId
+#   Export:
+#     Name: ${self:custom.prefix}-userIdResourceId

@@ -1,0 +1,27 @@
+LambdaRole: ${file(./aws/LambdaRole.yml)}
+
+ServerlessInternetGateway: ${file(./aws/ServerlessInternetGateway.yml)}
+ServerlessVPC: ${file(./aws/ServerlessVPC.yml)}
+ServerlessVPCGA: ${file(./aws/ServerlessVPCGA.yml)}
+ServerlessSubnetA: ${file(./aws/ServerlessSubnetA.yml)}
+ServerlessSubnetB: ${file(./aws/ServerlessSubnetB.yml)}
+ServerlessSubnetC: ${file(./aws/ServerlessSubnetC.yml)}
+ServerlessSubnetGroup: ${file(./aws/ServerlessSubnetGroup.yml)}
+ServerlessSecurityGroup: ${file(./aws/ServerlessSecurityGroup.yml)}
+
+RouteTablePublic: ${file(./aws/RouteTablePublic.yml)}
+RoutePublic: ${file(./aws/RoutePublic.yml)}
+RouteTableAssociationSubnetA: ${file(./aws/RouteTableAssociationSubnetA.yml)}
+RouteTableAssociationSubnetB: ${file(./aws/RouteTableAssociationSubnetB.yml)}
+RouteTableAssociationSubnetC: ${file(./aws/RouteTableAssociationSubnetC.yml)}
+
+# AuroraRDSClusterParameter: ${file(./aws/AuroraRDSClusterParameter.yml)}
+# AuroraRDSInstanceParameter: ${file(./aws/AuroraRDSInstanceParameter.yml)}
+# AuroraRDSCluster: ${file(./aws/AuroraRDSCluster.yml)}
+# AuroraRDSInstance: ${file(./aws/AuroraRDSInstance.yml)}
+
+# DynamoDB: ${file(./aws/DynamoDB.yml)}
+
+# An custom instance of ApiGateway that will be shared across all services
+# this allows to have multiple services under one api endpoint
+SharedApiGateway: ${file(./aws/SharedApiGateway.yml)}

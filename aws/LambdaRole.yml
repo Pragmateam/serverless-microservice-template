@@ -1,0 +1,44 @@
+Type: AWS::IAM::Role
+Properties:
+  AssumeRolePolicyDocument:
+    Statement:
+      - Effect: Allow
+        Action: sts:AssumeRole
+        Principal:
+          Service: lambda.amazonaws.com
+    Version: "2012-10-17"
+
+  Policies:
+    - PolicyName: CanLog
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogStream
+              - logs:CreateLogGroup
+              - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+
+    - PolicyName: CanUseLayers
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - lambda:GetLayerVersion
+            Resource: arn:aws:lambda:*:*:layer:*:*
+
+    - PolicyName: CanAccessDynamoDB
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+            Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/*"

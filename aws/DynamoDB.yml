@@ -1,0 +1,12 @@
+TransactionsTable:
+  Type: "AWS::DynamoDB::Table"
+  DeletionPolicy: Retain
+  Properties:
+    TableName: ${self:provider.environment.TRANSACTIONS_TABLE}
+    AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+    KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+    BillingMode: PAY_PER_REQUEST

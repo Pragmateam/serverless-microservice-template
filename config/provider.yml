@@ -1,0 +1,42 @@
+# This is a global configuration file for the entire project
+# Use it to specify your configurations
+
+# default config will be used for all stages
+default: &default
+  runtime: nodejs12.x # Always use the Latest Available Runtime
+  region: ap-southeast-2
+  timeout: 15 # Overrides the default: 6 seconds.
+  memorySize: 256 # Overrides the default: 1024mb. Lambdas shouldn't use more than 256mb.
+  logRetentionInDays: 14
+  apiGateway:
+    metrics: true
+    binaryMediaTypes:
+      - "*/*"
+    minimumCompressionSize: 1024
+
+  iam:
+    role: LambdaRole
+
+  tracing:
+    apiGateway: true
+    lambda: true
+
+  network:
+    VPC_CIDR: "10"
+
+  rds:
+    USERNAME: "MyServiceDatabaseAdminUser"
+    PASSWORD: "MyServiceDatabaseAdminPass"
+    DB_NAME: "MyServiceDatabaseName"
+
+# stage specific config
+# the key should match a serverless stage
+local:
+  <<: *default
+
+dev:
+  <<: *default
+
+prod:
+  <<: *default
+  logRetentionInDays: 120

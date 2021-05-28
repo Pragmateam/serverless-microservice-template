@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "baseUrl": ".",
+    "target": "ES6",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "importHelpers": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "preserveConstEnums": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "allowJs": true,
+    "strict": true,
+    "rootDir": "src/",
+    "sourceMap": true,
+    "inlineSources": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "typeRoots": ["./node_modules/@types", "src/typings"]
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "/node_modules/",
+    ".serverless/**/*",
+    ".dynamodb/**/*",
+    ".webpack/**/*",
+    ".scripts/**/*",
+    ".github/**/*",
+    ".docker/**/*",
+    ".build/**/*",
+    "_warmup/**/*",
+    "vscode/**/*",
+    "lib/**/*",
+    "aws/**/*",
+    "test"
+  ]
+}

@@ -1,0 +1,22 @@
+# Serverless Framework Custom Configuration
+
+webpack:
+  excludeRegex: \.ts|test|\.map
+  includeModules:
+    forceExclude:
+      - aws-sdk
+
+dynamodb:
+  stages:
+    - local
+  start:
+    port: 8000
+    migrate: true
+    inMemory: true
+  migration:
+    dir: offline/migrations
+
+offline:
+  host: 0.0.0.0
+  httpPort: 4000
+  skipCacheInvalidation: true

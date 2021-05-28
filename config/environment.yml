@@ -1,0 +1,18 @@
+# This is a global configuration file for the entire project
+# Use it to specify your env variables
+
+# default config will be used for all stages
+default: &default
+  AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+  SERVICE_NAME: ${self:service}
+
+# stage specific config
+# the key should match a serverless stage
+local:
+  <<: *default
+
+dev:
+  <<: *default
+
+prod:
+  <<: *default

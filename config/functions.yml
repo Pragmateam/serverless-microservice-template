@@ -1,0 +1,9 @@
+# Project Function Definitions
+
+hello:
+  handler: src/handlers/hello.default
+  events:
+    - http:
+        path: hello
+        method: get
+        cors: true

@@ -1,0 +1,72 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "project": "../tsconfig.json"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["jest", "import", "security", "prettier", "@typescript-eslint"],
+  "settings": {
+    "import/cache": "Infinity",
+    "import/named": "off",
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "paths": "./tsconfig.json"
+      }
+    },
+    "import/internal-regex": "^src/"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "never",
+        "alphabetize": {
+          "caseInsensitive": true
+        },
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object"],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "before",
+            "patternOptions": {
+              "alphabetize": {
+                "order": "asc"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "require-await": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "security/detect-object-injection": "off",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:import/recommended",
+    "plugin:security/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ]
+}

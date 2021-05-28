@@ -1,0 +1,10 @@
+.serverless/
+.dynamodb/
+.webpack/
+.webpackCache/
+.docker/
+.vscode/
+.scripts/
+node_modules/
+aws/
+*.config.js

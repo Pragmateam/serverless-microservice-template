@@ -1,0 +1,56 @@
+# Project Template to use for building microservices.
+
+service: mymicroservice # CHANGE ME
+
+frameworkVersion: "^2.0.0"
+useDotenv: true
+
+configValidationMode: error
+disabledDeprecations:
+  - CLI_OPTIONS_SCHEMA
+  - UNSUPPORTED_CLI_OPTIONS
+variablesResolutionMode: 20210326
+
+plugins:
+  - serverless-webpack
+  - serverless-dynamodb-local
+  - serverless-offline
+
+package:
+  individually: true
+
+custom:
+  # A global prefix that is used to scope resource names
+  prefix: ${self:service}-${self:provider.stage}
+
+  # Project configuration per Stage
+  provider: ${file(./config/provider.yml):${self:provider.stage}}
+
+  # Other custom Configurations for developers
+  serverless-offline: ${file(./config/framework.yml):offline}
+  dynamodb: ${file(./config/framework.yml):dynamodb}
+  webpack: ${file(./config/framework.yml):webpack}
+
+provider:
+  name: aws
+  runtime: nodejs12.x # Always use the Latest Available Runtime
+  memorySize: 256 # Overrides the default: 1024mb. Lambdas shouldn't use more than 256mb.
+  timeout: 15 # Overrides the default: 6 seconds.
+  region: ${self:custom.provider.region}
+  stage: ${opt:stage, 'local'}
+  iam: ${self:custom.provider.iam}
+  tracing: ${self:custom.provider.tracing}
+  apiGateway: ${self:custom.provider.apiGateway}
+  logRetentionInDays: ${self:custom.provider.logRetentionInDays}
+  lambdaHashingVersion: 20201221
+
+  # Load Project Environment Variables per Stage
+  environment: ${file(./config/environment.yml):${self:provider.stage}}
+
+# The root service is only used to deploy shared resources like tables, IAM roles etc.
+# This approach allows to isolate business logic of services from data sources and common resources
+resources:
+  Resources: ${file(./config/resources.yml)}
+  Outputs: ${file(./config/outputs.yml)}
+
+functions: ${file(./config/functions.yml)}
