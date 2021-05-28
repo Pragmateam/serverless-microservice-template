@@ -20,6 +20,12 @@
     },
     "prefer-offline": "true"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
   "release": {
     "branches": [
       "main"
@@ -33,15 +39,18 @@
     "test": "jest --colors --verbose",
     "test:ci": "npm run lint && npm run test:coverage",
     "test:watch": "jest --watch --verbose",
-    "test:coverage": "jest --runInBand --no-cache --coverage --silent",
+    "test:coverage": "jest --runInBand --passWithNoTests --no-cache --coverage --silent",
     "dbgui": "DYNAMO_ENDPOINT=http://localhost:8000 dynamodb-admin",
     "db:install": "serverless dynamodb install",
     "db:migrate": "serverless dynamodb migrate",
     "db:start": "serverless dynamodb start",
     "release": "semantic-release",
+    "commit": "npx git-cz",
     "deploy": "serverless deploy --verbose --stage"
   },
   "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@types/aws-lambda": "^8.10.76",
     "@types/eslint": "^7.2.11",
     "@types/eslint-plugin-prettier": "^3.1.0",
@@ -63,11 +72,13 @@
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-security": "^1.4.0",
+    "git-cz": "^4.7.6",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
     "prettier": "^2.3.0",
     "semantic-release": "^17.4.3",
     "serverless": "^2.43.1",
+    "serverless-deployment-bucket": "^1.5.1",
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-offline": "^7.0.0",
     "serverless-webpack": "^5.5.0",

@@ -8,6 +8,19 @@ default: &default
   timeout: 15 # Overrides the default: 6 seconds.
   memorySize: 256 # Overrides the default: 1024mb. Lambdas shouldn't use more than 256mb.
   logRetentionInDays: 14
+
+  deploymentBucket:
+    name: sls-deployment-${self:service}-${self:provider.stage}
+    serverSideEncryption: AES256
+    versioning: true
+    accelerate: true
+    blockPublicAccess: true
+    tags:
+      - Key: Environment
+        Value: ${self:provider.stage}
+      - Key: Provisioned
+        Value: Serverless Framework
+
   apiGateway:
     metrics: true
     binaryMediaTypes:

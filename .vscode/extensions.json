@@ -13,7 +13,8 @@
     "ms-vscode.js-debug-nightly",
     "ms-vsliveshare.vsliveshare-pack",
     "ms-vscode.vscode-typescript-next",
-    "christian-kohler.npm-intellisense"
+    "christian-kohler.npm-intellisense",
+    "vivaxy.vscode-conventional-commits"
   ],
 
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.

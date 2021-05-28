@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import { UnprocessableEntity } from 'http-errors';
+import createHttpError from 'http-errors';
 
 /**
  * Checks if body is a valid JSON and converts it to object
@@ -17,7 +18,7 @@ export const parseJsonPayload = (event: APIGatewayProxyEvent): void => {
       try {
         event.body = JSON.parse(event.body);
       } catch (err) {
-        throw new UnprocessableEntity('Content type defined as JSON but an invalid JSON was provided');
+        throw new createHttpError.UnprocessableEntity('Content type defined as JSON but an invalid JSON was provided');
       }
     }
   }

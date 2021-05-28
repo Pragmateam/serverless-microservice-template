@@ -14,6 +14,7 @@ variablesResolutionMode: 20210326
 plugins:
   - serverless-webpack
   - serverless-dynamodb-local
+  - serverless-deployment-bucket
   - serverless-offline
 
 package:
@@ -42,6 +43,9 @@ provider:
   tracing: ${self:custom.provider.tracing}
   apiGateway: ${self:custom.provider.apiGateway}
   logRetentionInDays: ${self:custom.provider.logRetentionInDays}
+  deploymentBucket:
+    name: ${self:custom.provider.deploymentBucket.name}
+    serverSideEncryption: ${self:custom.provider.deploymentBucket.serverSideEncryption}
   lambdaHashingVersion: 20201221
 
   # Load Project Environment Variables per Stage
